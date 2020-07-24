@@ -31,10 +31,12 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
+    '''
     @app.before_first_request
-    def create_tables():
-        db.create_all()
+        def create_tables():
+            db.create_all()
+    '''
+
 
     db.init_app(app)
     ma.init_app(app)
