@@ -47,4 +47,7 @@ def create_app(test_config=None):
     app.add_url_rule('/', endpoint='index')
     app.register_blueprint(contact.bp)
 
+    @app.before_first_request
+    def create_tables():
+        db.create_all()
     return app

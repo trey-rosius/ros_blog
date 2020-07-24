@@ -1,6 +1,6 @@
+from flask import app
 
-
-from flaskr import db, app
+from flaskr.db import db
 
 db.init_app(app)
 @app.before_first_request
