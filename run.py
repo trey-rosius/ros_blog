@@ -1,5 +1,5 @@
-from flaskr.app import app
-from flaskr.db import db
+from app import app
+from db import db
 
 db.init_app(app)
 
