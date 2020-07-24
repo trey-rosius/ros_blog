@@ -1,5 +1,4 @@
-from flask import app
-
+from flaskr.app import app
 from flaskr.db import db
 
 db.init_app(app)
