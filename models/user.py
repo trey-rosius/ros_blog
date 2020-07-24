@@ -2,7 +2,7 @@
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from flaskr.db import db
+from db import db
 
 
 class UserModel(db.Model):

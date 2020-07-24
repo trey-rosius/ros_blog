@@ -4,10 +4,10 @@ from flask import Flask
 from dotenv import load_dotenv
 from flask_uploads import configure_uploads, patch_request_class
 
-from flaskr.blueprints import contact, auth, blog
-from flaskr.db import db
-from flaskr.libs.image_helper import IMAGE_SET
-from flaskr.ma import ma
+from blueprints import contact, auth, blog
+from db import db
+from libs.image_helper import IMAGE_SET
+from ma import ma
 
 app = Flask(__name__, instance_relative_config=True)
 load_dotenv(".env", verbose=True)

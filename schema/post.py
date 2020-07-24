@@ -1,5 +1,5 @@
-from flaskr.ma import ma
-from flaskr.models.post import PostModel
+from ma import ma
+from models.post import PostModel
 
 
 class PostSchema(ma.SQLAlchemyAutoSchema):

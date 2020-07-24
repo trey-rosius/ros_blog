@@ -1,5 +1,5 @@
-from flaskr.ma import ma
-from flaskr.models.user import UserModel
+from ma import ma
+from models.user import UserModel
 
 
 class UserSchema(ma.SQLAlchemyAutoSchema):
