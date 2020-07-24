@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}All Posts{% endblock %}</h1>
+{% endblock %}
+{% block menu %}
+<ul class="sidebar-nav">
+        <li class="sidebar-nav__item sidebar-nav__item--active">
+
+            <a class="sidebar-nav__link" href="{{ url_for('blog.index') }}">
+            <span>Home</span></a>
+
+
+        </li>
+        <li class="sidebar-nav__item">
+          {% if g.user %}
+          <a class="sidebar-nav__link" href="{{ url_for('blog.create') }}">
+            <span>Create</span></a>
+          {% endif %}
+        </li>
+        <li class="sidebar-nav__item">
+          <a href="#" class="sidebar-nav__link">
+            <span>Work</span>
+          </a>
+        </li>
+        <li class="sidebar-nav__item">
+          <a href="{{ url_for('contact.send_email') }}" class="sidebar-nav__link">
+            <span>Contact</span>
+          </a>
+        </li>
+      </ul>
+{%endblock %}
+
+{% block header_menu %}
+
+{% if g.user.id %}
+<div class="header-menu">
+
+
+          <a href="{{url_for('auth.logout')}}" class="header-menu__logout">
+            <span>Log Out</span>
+          </a>
+        </div>
+
+{% else %}
+<div class="header-menu">
+
+          <a href="{{url_for('auth.login')}}" class="header-menu__login">
+              <span>Login</span></a>
+
+
+          <a href="{{url_for('auth.register')}}" class="header-menu__register">
+            <span>Register</span>
+          </a>
+
+      </div>
+
+{%endif%}
+
+{% endblock %}
+
+{% block middle %}
+
+  {% for post in posts %}
+<article class="post">
+  <header>
+    <div>
+         <img src="http://{{request.host}}/static/images/{{post.image_url}}" alt="images uploaded" class="post_images">
+
+      <h1 class="title">{{ post.title }}</h1>
+
+      <div class="about">
+        by {{ post.users.full_names }} on {{
+        post.created_on.strftime('%Y-%m-%d') }}
+      </div>
+    </div>
+
+  </header>
+     <p class="post-body">{{ post.posts }}</p>
+     {% if g.user.id == post.user_id %}
+    <div class="post-options">
+        <a href="{{ url_for('blog.update', id=post['id']) }}" class="edit">Edit</a>
+
+        <form action="{{ url_for('blog.delete', id=post.id) }}" method="post">
+    <input class="delete" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+  </form>
+         </div>
+
+    {% endif %}
+</article>
+{% endfor %}
+
+{% endblock %}
