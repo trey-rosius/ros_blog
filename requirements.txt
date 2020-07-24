@@ -1,3 +1,4 @@
+uwsgi
 click==7.1.2
 Flask==1.1.2
 flask-marshmallow==0.13.0
