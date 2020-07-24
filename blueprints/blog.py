@@ -6,11 +6,11 @@ from flask import (
 from flask_uploads import UploadNotAllowed
 
 
-from flaskr.blueprints.auth import login_required, get_post
-from flaskr.libs import image_helper
-from flaskr.models.post import PostModel
-from flaskr.models.user import UserModel
-from flaskr.schema.post import PostSchema
+from blueprints.auth import login_required, get_post
+from libs import image_helper
+from models.post import PostModel
+from models.user import UserModel
+from schema.post import PostSchema
 
 bp = Blueprint('blog', __name__)
 

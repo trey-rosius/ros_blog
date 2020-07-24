@@ -6,9 +6,9 @@ from flask import (
 from werkzeug.exceptions import abort
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from flaskr.models.post import PostModel
-from flaskr.models.user import UserModel
-from flaskr.schema.user import UserSchema
+from models.post import PostModel
+from models.user import UserModel
+
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
