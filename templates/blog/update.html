@@ -28,8 +28,42 @@
             <span>Contact</span>
           </a>
         </li>
+      <li class="sidebar-nav__item">
+         {% if g.user %}
+          <a href="{{url_for('profile.get',id=g.user.id)}}" class="sidebar-nav__link">
+            <span>Profile</span>
+          </a>
+           {% endif %}
+        </li>
       </ul>
       {%endblock %}
+{% block header_menu %}
+
+{% if g.user.id %}
+<div class="header-menu">
+
+
+          <a href="{{url_for('auth.logout')}}" class="header-menu__logout">
+            <span>Log Out</span>
+          </a>
+        </div>
+
+{% else %}
+<div class="header-menu">
+
+          <a href="{{url_for('auth.login')}}" class="header-menu__login">
+              <span>Login</span></a>
+
+
+          <a href="{{url_for('auth.register')}}" class="header-menu__register">
+            <span>Register</span>
+          </a>
+
+      </div>
+
+{%endif%}
+
+{% endblock %}
 
 {% block middle %}
   <form method="post" enctype=multipart/form-data class="create">

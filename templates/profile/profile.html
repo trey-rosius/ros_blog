@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-
 {% block header %}
-  <h1>{% block title %}Create Post{% endblock %}</h1>
+<h1>{% block title %}Your Profile{% endblock %}</h1>
 {% endblock %}
 {% block menu %}
+
 <ul class="sidebar-nav">
         <li class="sidebar-nav__item">
 
@@ -12,7 +12,7 @@
 
 
         </li>
-        <li class="sidebar-nav__item sidebar-nav__item--active">
+        <li class="sidebar-nav__item">
           {% if g.user %}
           <a class="sidebar-nav__link" href="{{ url_for('blog.create') }}">
             <span>Create</span></a>
@@ -28,12 +28,13 @@
             <span>Contact</span>
           </a>
         </li>
-      <li class="sidebar-nav__item">
-         {% if g.user %}
-          <a href="{{url_for('profile.get',id=g.user.id)}}" class="sidebar-nav__link">
+
+         <li class="sidebar-nav__item sidebar-nav__item--active">
+               {% if g.user %}
+          <a href="{{url_for('profile.get',id=user.id)}}" class="sidebar-nav__link">
             <span>Profile</span>
           </a>
-           {% endif %}
+             {% endif %}
         </li>
       </ul>
       {%endblock %}
@@ -64,21 +65,33 @@
 {%endif%}
 
 {% endblock %}
+
 {% block middle %}
-  <form method="post" enctype=multipart/form-data class="create">
+<article class="profile">
+      {% if user.profile_pic %}
+<img src="http://{{request.host}}/static/images/{{user.profile_pic}}" alt="profile pic" class="profile-pic">
 
-    <input name="title" class="post-title"
-           value="{{ request.form['title'] }}"
-           placeholder="Title of Post"
-           required>
+             {% else %}
+         <div class="profile-placeholder-name">
 
+             {% for s in user.full_names.split() %}
 
-    <textarea name="body"
-              placeholder="write something"
-              class="post-area">{{ request.form['body'] }}
+                 {{s[0]}}
+             {% endfor %}
 
-    </textarea>
-      <input type=file name=file class="choose-file">
-    <input type="submit" value="Save" class="create-submit">
-  </form>
+         </div>
+        {%endif%}
+    <div class="profile-details">
+        <h2 class="profile-name">{{user.full_names}}</h2>
+    <div class="profile-email">
+        {{user.email}}
+    </div>
+        <div class="edit-btn">
+            <a href="{{url_for('profile.update',id=user.id)}}" class="edit-btn">Edit Profile</a>
+        </div>
+
+    </div>
+
+</article>
 {% endblock %}
+

@@ -28,6 +28,13 @@
             <span>Contact</span>
           </a>
         </li>
+     <li class="sidebar-nav__item">
+         {% if g.user %}
+          <a href="{{url_for('profile.get',id=g.user.id)}}" class="sidebar-nav__link">
+            <span>Profile</span>
+          </a>
+           {% endif %}
+        </li>
       </ul>
 {%endblock %}
 
@@ -67,16 +74,42 @@
     <div>
          <img src="http://{{request.host}}/static/images/{{post.image_url}}" alt="images uploaded" class="post_images">
 
+
+
       <h1 class="title">{{ post.title }}</h1>
 
-      <div class="about">
-        by {{ post.users.full_names }} on {{
-        post.created_on.strftime('%Y-%m-%d') }}
-      </div>
+
+
     </div>
 
   </header>
      <p class="post-body">{{ post.posts }}</p>
+    <div class="user-details">
+ {% if post.users.profile_pic %}
+<img src="http://{{request.host}}/static/images/{{post.users.profile_pic}}" alt="profile pic" class="profile-pic-sm">
+
+             {% else %}
+         <div class="profile-placeholder-name-sm">
+
+             {% for s in post.users.full_names.split() %}
+
+                 {{s[0]}}
+             {% endfor %}
+
+         </div>
+        {%endif%}
+      <div class="about-container">
+          <div class="about">
+               {{ post.users.full_names }}
+          </div>
+       <div class="time">
+           posted on  {{ post.created_on.strftime('%Y-%m-%d') }}
+       </div>
+
+      </div>
+
+
+        </div>
      {% if g.user.id == post.user_id %}
     <div class="post-options">
         <a href="{{ url_for('blog.update', id=post['id']) }}" class="edit">Edit</a>

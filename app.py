@@ -4,7 +4,7 @@ from flask import Flask
 from dotenv import load_dotenv
 from flask_uploads import configure_uploads, patch_request_class
 
-from blueprints import contact, auth, blog
+from blueprints import contact, auth, blog, profile
 from db import db
 from libs.image_helper import IMAGE_SET
 from ma import ma
@@ -17,7 +17,7 @@ app.config.from_mapping(
     SQLALCHEMY_DATABASE_URI="sqlite:///data.db",
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
     PROPAGATE_EXCEPTIONS=True,
-    UPLOADED_IMAGES_DEST=os.path.join("flaskr/static", "images"),
+    UPLOADED_IMAGES_DEST=os.path.join("static", "images"),
 
     # DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
 )
@@ -28,18 +28,26 @@ configure_uploads(app, IMAGE_SET)
 db.init_app(app)
 ma.init_app(app)
 
+
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
+
 app.register_blueprint(auth.bp)
 app.register_blueprint(blog.bp)
 app.add_url_rule('/', endpoint='index')
 app.register_blueprint(contact.bp)
+app.register_blueprint(profile.bp)
 
 if __name__ == "__main__":
     db.init_app(app)
     ma.init_app(app)
+    '''
+        if app.config['DEBUG']:
+            @app.before_first_request
+            def create_tables():
+             db.create_all()
+    '''
 
-    if app.config['DEBUG']:
-        @app.before_first_request
-        def create_tables():
-            db.create_all()
     app.run(port=5000, debug=True)
-

@@ -17,7 +17,6 @@ bp = Blueprint('blog', __name__)
 post_schema = PostSchema()
 @bp.route('/post/json')
 def allPosts():
-    
     return {"posts": post_schema.dump(PostModel.find_all_posts(), many=True)}, 200
 
 

@@ -19,7 +19,7 @@
           {% endif %}
         </li>
         <li class="sidebar-nav__item">
-          <a href="./register.html" class="sidebar-nav__link">
+          <a href="#" class="sidebar-nav__link">
             <span>Work</span>
           </a>
         </li>
@@ -27,6 +27,13 @@
           <a href="#" class="sidebar-nav__link">
             <span>Contact</span>
           </a>
+        </li>
+      <li class="sidebar-nav__item">
+         {% if g.user %}
+          <a href="{{url_for('profile.get',id=g.user.id)}}" class="sidebar-nav__link">
+            <span>Profile</span>
+          </a>
+           {% endif %}
         </li>
       </ul>
       {%endblock %}

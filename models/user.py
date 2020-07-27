@@ -10,6 +10,7 @@ class UserModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     full_names = db.Column(db.String(80), nullable=False)
+    profile_pic = db.Column(db.String(80))
 
     email = db.Column(db.String(255), unique=True, nullable=False, index=True)
     password = db.Column(db.String(124), nullable=False, server_default="")
