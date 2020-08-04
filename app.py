@@ -19,7 +19,6 @@ app.config.from_mapping(
     PROPAGATE_EXCEPTIONS=True,
     UPLOADED_IMAGES_DEST=os.path.join("static", "images"),
 
-    # DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
 )
 
 patch_request_class(app, 10 * 1024 * 1024)

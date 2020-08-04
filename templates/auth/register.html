@@ -24,7 +24,7 @@
           </a>
         </li>
         <li class="sidebar-nav__item">
-          <a href="#" class="sidebar-nav__link">
+          <a href="{{ url_for('contact.send_email') }}" class="sidebar-nav__link">
             <span>Contact</span>
           </a>
         </li>
@@ -74,7 +74,7 @@
       Already Have An Account ?
     </div>
 
-      <a href="{{url_for('auth.login')}}" class="login-btn">Login</a>
+      <a href="{{url_for('auth.login')}}" class="login-btn"> Log In</a>
 
   </div>
 </div>

@@ -26,6 +26,7 @@ html {
   font-size: 62.5%;
 }
 
+
 body {
   background-image: url("img/bg.jpg");
   font-weight: 400;
@@ -87,7 +88,6 @@ body {
 }
 
 .login-form {
-  margin-top: 4rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -108,7 +108,7 @@ body {
   border-style: none;
 }
 .login-form__submit:hover {
-  background-color: white;
+   background-color: var(--color-white);
 }
 .login-form__submit-1 {
   margin-top: 2rem;
@@ -118,7 +118,7 @@ body {
   background-color: var(--color-bg-red);
   border-style: none;
 }
-.login-form__submit:hover {
+.login-form__submit-1:hover {
   background-color: var(--color-bg-dark);
 }
 
@@ -145,7 +145,7 @@ body {
   background-color: var(--color-bg-dark);
 }
 .login-btn:hover {
-  background-color: var(--color-white);
+  background-color: var(--color-bg-red);
   color: var(--color-bg-dark);
 }
 
@@ -217,7 +217,7 @@ body {
   color: var(--color-white);
   text-decoration: none;
   position: relative;
-  display: block;
+
   padding: 1.5rem 3rem;
   z-index: 10;
   display: flex;
@@ -284,6 +284,7 @@ body {
 .header-menu {
   display: flex;
   font-size: 1.7rem;
+
   color: var(--color-grey);
 }
 .header-menu__login {
@@ -336,8 +337,10 @@ body {
 
 .header-menu__logout {
   text-decoration: none;
-  padding: 0 2rem;
+  padding: 0.7rem 2rem;
+  align-self:center;
   color: var(--color-white);
+
   background-color: var(--color-bg-red);
 }
 .header-menu__logout:hover {
@@ -385,13 +388,19 @@ body {
   margin-top: 2rem;
   color: var(--color-white);
 }
-.create-submit {
-  margin: 2rem auto;
-  width: 20rem;
-  height: 4rem;
+update-post{
+display:flex;
+flex-direction:column;
+}
 
+.create-submit {
+  text-decoration: none;
+  border:0;
+  font-size:1.8rem;
+  margin-left:1rem;
+  padding: 1rem 2rem;
+  color: var(--color-white);
   background-color: var(--color-bg-red);
-  border-style: none;
 }
 
 .edit {
@@ -440,6 +449,7 @@ PROFILE STYLE
   flex-direction:column;
   margin: 0 auto;
 
+
   padding: 2rem 2rem;
 }
 .profile-pic {
@@ -448,6 +458,8 @@ PROFILE STYLE
   border-radius: 100%;
   border-style: solid;
   margin-bottom: 2rem;
+  align-self:center;
+
   border-width: 1px;
   border-color: var(--color-bg-red);
   background-size: cover;
